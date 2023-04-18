@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaires</title>
+</head>
+<body>
+    <tr>* Ces zones sont obligatoires</tr>
+<form action="http://bienvu.net/script.php" method="post">
+<fieldset>
+
+        <legend>Vos Coordonnées</legend>
+<label for="Votre nom*:">Votre Nom *:</label><input type="text" name="nom" id="?"><br>
+<label for="Votre prénom*:">Votre Prénom *:</label><input type="text" name="nom" id="?"><br>
+
+<label for="Sexe">Sexe*:</label>
+    <input type="radio" name="sexe" value="Féminin"> Féminin
+    <input type="radio" name="sexe" value="Masculin"> Masculin<br>
+    
+
+        <label for="date">Date de naissance:</label><input type="date" name="ddn" id="date"> </td></br>
+
+        <label for="Code Postal">Code Postal*:</label><input type="text" name="nom" id="?"><br>
+
+        <label for="Adresse">Adresse*:</label><input type="text" name="nom" id="?"><br>
+        <label for="Ville">Ville*:</label><input type="text" name="nom" id="?"><br>
+        <label for="Email">Email*:</label><input type="text" name="nom" id="?"><br>
+        
+
+</fieldset>
+<fieldset>
+        <legend>Votre demande</legend>
+
+        <label for="Sujet*:">Sujet*:</label>
+        <select id="Veuillez séléctionner un sujet" > 
+            <option value="Valeur" selected>Veuillez séléctionner un sujet</option>
+            <option value="Valeur">Mes Commandes</option>
+            <option value="Valeur">Question sur un produit</option>
+            <option value="Valeur">Réclamation</option>
+            <option value="Valeur">Autres</option>
+        </select><br>
+        
+            <label for="Votre question*:">Votre question*:</label> <textarea name="commentaire" rows="5" cols="20"></textarea>
+
+</fieldset>
+<input type="checkbox" ><tr>* J'accepte le traitement informatique de ce formulaire</tr><br>
+
+<button type="submit" value="Envoyer">Envoyer</button>
+<button type="reset" value="Annuler">Annuler</button>
+
+
+
+
+
+
+</form>
+</body>
+</html>
+
+
+<!-- 1 - Réalisez la page HTML suivante en indiquant http://bienvu.net/script.php comme valeur de l'attribut action et GET pour l'attribut method. Attention, certains champs sont obligatoires.
+
+Pour la liste déroulante, les valeurs doivent être : Mes commandes, Question sur un produit, Réclamation, Autres. 
+2 - Observez les données transmises dans l'url.
+
+3 - Remplacer la valeur GET par POST pour l'attribut method. Soumettez à nouveau le formulaire et observez l'url. -->
