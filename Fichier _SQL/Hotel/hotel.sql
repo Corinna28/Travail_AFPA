@@ -114,16 +114,29 @@ JOIN chambre ON hot_id=cha_hot_id
 GROUP BY sta_nom;
 
 -- 15 - Compter le nombre de chambres par station ayant une capacité > 1
-SELECT 
-FROM 
-JOIN 
-JOIN 
-GROUP BY 
-
+SELECT sta_nom, COUNT(cha_id)
+FROM station
+JOIN hotel ON sta_id=hot_sta_id
+JOIN chambre ON hot_id=cha_hot_id
+WHERE cha_capacite >1
+GROUP BY sta_nom;
 
 -- 16 - Afficher la liste des hôtels pour lesquels Mr Squire a effectué une réservation
 
+SELECT hot_nom, cli_nom, res_date
+FROM reservation
+JOIN client ON cli_id=res_cli_id
+JOIN chambre ON res_cha_id=cha_id
+JOIN hotel on cha_hot_id=hot_id
+WHERE cli_nom="Squire" ;
+
 -- 17 - Afficher la durée moyenne des réservations par station
+
+SELECT hot_sta_id,avg(DATEDIFF(res_date_fin, res_date_debut)) 
+FROM reservation,hotel,chambre  
+WHERE res_cha_id = cha_id AND cha_hot_id = hot_id  
+GROUP BY hot_sta_id;
+
 
 
 
