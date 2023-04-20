@@ -56,11 +56,14 @@ GROUP BY posfou DESC,nomfou ASC;
 
 -- la fonction MONTH() permet d’extraire le numéro de mois à partir d’une date au format AAAA-MM-JJ. Si la date d’entrée est par exemple ‘2014-02-03’, la valeur de retour sera ‘3’. Cela permet d’associer le numéro de mois au nom du mois (3 = Mars).
 
-SELECT MONTH (derliv),numcom
-FROM ligcom
-;
+-- SELECT MONTH (derliv),numcom
+-- FROM ligcom
+-- ;
 
 
+SELECT datcom,numcom
+FROM entcom
+WHERE MONTH(datcom)=3 or MONTH (datcom)= 4;
 
 
 
@@ -72,8 +75,9 @@ FROM ligcom
 
 SELECT numcom,obscom
 FROM entcom
+WHERE obscom IS NOT NULL AND obscom <> '';
 
-;
+
 --    8. Lister le total de chaque commande par total décroissant.
 
 --         Afficher numéro de commande et total
@@ -107,6 +111,8 @@ JOIN ligcom ON entcom.numcom=ligcom.numcom;
 --     11.Sortir les produits des commandes ayant le mot "urgent' en observation.
 
 --         Afficher numéro de commande, nom du fournisseur, libellé du produit et sous total (= quantité commandée * prix unitaire)
+
+SELECT 
 
 --     Coder de 2 manières différentes la requête suivante : Lister le nom des fournisseurs susceptibles de livrer au moins un article.
 
