@@ -38,7 +38,8 @@ WHERE stkphy<=stkale AND qteann<1000;
 --         L’affichage (département, nom fournisseur) sera effectué par département décroissant, puis par ordre alphabétique.
 SELECT nomfou,posfou
 FROM fournis
-WHERE posfou LIKE'75%' OR posfou LIKE '78%' OR posfou LIKE'92%' OR posfou LIKE'77%';
+WHERE posfou LIKE'75%' OR posfou LIKE '78%' OR posfou LIKE'92%' OR posfou LIKE'77%'
+GROUP BY posfou DESC,nomfou ASC;
 
 -- L’opérateur LIKE est utilisé dans la clause WHERE des requêtes SQL. Ce mot-clé permet d’effectuer une recherche sur un modèle particulier. Il est par exemple possible de rechercher les enregistrements dont la valeur d’une colonne commence par telle ou telle lettre. Les modèles de recherches sont multiple.
 
