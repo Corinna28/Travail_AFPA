@@ -114,7 +114,7 @@ JOIN ligcom ON entcom.numcom=ligcom.numcom;
 
 SELECT 
 
---     Coder de 2 manières différentes la requête suivante : Lister le nom des fournisseurs susceptibles de livrer au moins un article.
+--     12. Coder de 2 manières différentes la requête suivante : Lister le nom des fournisseurs susceptibles de livrer au moins un article.
 
 -- 1ere Requete
 
@@ -134,15 +134,28 @@ WHERE qteliv >1
 GROUP BY nomfou
 ;
 
---     Coder de 2 manières différentes la requête suivante : Lister les commandes dont le fournisseur est celui de la commande n°70210.
+--    13. Coder de 2 manières différentes la requête suivante : Lister les commandes dont le fournisseur est celui de la commande n°70210.
 
 --         Afficher numéro de commande et date
 
+-- 1ere Requete
 
+SELECT numcom,datcom
+FROM entcom
+JOIN fournis ON fournis.numfou=entcom.numfou
+WHERE numcom= '70210';
+
+-- 2eme Requete
+
+SELECT numcom,datcom
+FROM entcom
+WHERE numcom = '70210';
 
 --     Dans les articles susceptibles d’être vendus, lister les articles moins chers (basés sur Prix1) que le moins cher des rubans (article dont le premier caractère commence par R).
 
 --         Afficher libellé de l’article et prix1
+
+
 
 --     Sortir la liste des fournisseurs susceptibles de livrer les produits dont le stock est inférieur ou égal à 150 % du stock d'alerte.
 
