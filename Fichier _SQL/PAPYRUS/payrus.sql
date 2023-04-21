@@ -116,9 +116,29 @@ SELECT
 
 --     Coder de 2 manières différentes la requête suivante : Lister le nom des fournisseurs susceptibles de livrer au moins un article.
 
+-- 1ere Requete
+
+SELECT nomfou, qteliv
+FROM ligcom
+JOIN entcom ON entcom.numcom=ligcom.numcom
+JOIN fournis ON entcom.numfou=fournis.numfou
+WHERE qteliv >1 
+GROUP BY nomfou
+;
+                                                                -- LES RESULTATS SONT différents :(
+-- 2eme Requete
+
+SELECT nomfou, qteliv
+FROM ligcom,entcom,fournis 
+WHERE qteliv >1 
+GROUP BY nomfou
+;
+
 --     Coder de 2 manières différentes la requête suivante : Lister les commandes dont le fournisseur est celui de la commande n°70210.
 
 --         Afficher numéro de commande et date
+
+
 
 --     Dans les articles susceptibles d’être vendus, lister les articles moins chers (basés sur Prix1) que le moins cher des rubans (article dont le premier caractère commence par R).
 
