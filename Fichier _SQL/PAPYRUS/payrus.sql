@@ -151,11 +151,15 @@ SELECT numcom,datcom
 FROM entcom
 WHERE numcom = '70210';
 
---     Dans les articles susceptibles d’être vendus, lister les articles moins chers (basés sur Prix1) que le moins cher des rubans (article dont le premier caractère commence par R).
+--     14. Dans les articles susceptibles d’être vendus, lister les articles moins chers (basés sur Prix1) que le moins cher des rubans (article dont le premier caractère commence par R).
 
 --         Afficher libellé de l’article et prix1
 
-
+SELECT codart, numfou, prix1
+FROM vente
+WHERE prix1 < (SELECT MIN( prix1 ) AS mini
+FROM vente
+WHERE codart LIKE 'R%')
 
 --     Sortir la liste des fournisseurs susceptibles de livrer les produits dont le stock est inférieur ou égal à 150 % du stock d'alerte.
 
