@@ -165,7 +165,12 @@ WHERE codart LIKE 'R%')
 
 --         La liste sera triée par produit puis fournisseur
 
-
+SELECT fournis.nomfou, produit.stkphy, produit.stkale,produit.libart
+FROM fournis
+JOIN vente ON vente.numfou = fournis.numfou
+JOIN produit ON produit.codart = vente.codart
+WHERE produit.stkphy <= produit.stkale * 1.5
+ORDER BY produit.libart, fournis.nomfou;
 
 
 
@@ -173,9 +178,26 @@ WHERE codart LIKE 'R%')
 
 --         La liste sera triée par fournisseur puis produit
 
+SELECT fournis.nomfou,produit.libart
+FROM fournis
+JOIN vente ON vente.numfou = fournis.numfou
+JOIN produit ON produit.codart = vente.codart
+WHERE produit.stkphy <= produit.stkale * 1.5 AND vente.delliv <= 30
+ORDER BY fournis.nomfou, produit.libart;
+
+
 --     Avec le même type de sélection que ci-dessus, sortir un total des stocks par fournisseur, triés par total décroissant.
+SELECT fournis.nomfou,sum(produit.stkphy)
+FROM fournis
+JOIN vente ON fournis.numfou = vente.numfou
+JOIN produit ON produit.codart = vente.codart
+GROUP BY nomfou
+ORDER BY produit.stkphy desc ;
+
+
 
 --     En fin d'année, sortir la liste des produits dont la quantité réellement commandée dépasse 90% de la quantité annuelle prévue.
+
 
 --     Calculer le chiffre d'affaire par fournisseur pour l'année 2018, sachant que les prix indiqués sont hors taxes et que le taux de TVA est 20%.
 
