@@ -195,8 +195,10 @@ GROUP BY nomfou
 ORDER BY produit.stkphy desc ;
 
 
-
 --     En fin d'année, sortir la liste des produits dont la quantité réellement commandée dépasse 90% de la quantité annuelle prévue.
+
+
+
 
 
 --     Calculer le chiffre d'affaire par fournisseur pour l'année 2018, sachant que les prix indiqués sont hors taxes et que le taux de TVA est 20%.
