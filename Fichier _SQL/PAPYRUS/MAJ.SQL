@@ -21,5 +21,6 @@ SET obscom = '*****'
 WHERE numfou IN(SELECT numfou FROM fournis WHERE satisf<5);
 
 -- Supprimer le produit "I110".
+
 DELETE FROM produit
 WHERE produit.codart='I110';
