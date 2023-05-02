@@ -63,7 +63,10 @@ WHERE YEAR(OrderDate)=1997;
 
 -- 8- Chiffre d'affaires détaillé par mois, sur les ventes de 1997 :
 
-
+SELECT SUM(UnitPrice*Quantity) AS `Montant Ventes 97`
+FROM orders
+JOIN `order details`ON orders.OrderID=`order details`.orderID
+WHERE YEAR(OrderDate)=1997;
 
 -- 9- A quand remonte la dernière commande du client nommé "Du monde entier" ?
 
