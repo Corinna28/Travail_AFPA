@@ -1,14 +1,18 @@
 <?php
 
 // on importe le contenu du fichier "db.php"
-include "db.php";
+include ('db.php');
 // on exécute la méthode de connexion à notre BDD
 $db = connexionBase();
 
 // on lance une requête pour chercher toutes les fiches d'artistes
-$requete = $db->query("SELECT * FROM disc INNER JOIN artist on disc.artist_id = artist.artist_id");
+$requete = $db->prepare("SELECT * FROM disc JOIN artist ON disc.artist_id = artist.artist_id");
+
+// on ajoute l'ID du disque passé dans l'URL en paramètre et on exécute :
+$requete->execute();
+
 // on récupère tous les résultats trouvés dans une variable
-$tableau = $requete->fetchAll(PDO::FETCH_OBJ);
+$myDiscs = $requete->fetchAll(PDO::FETCH_OBJ);
 // on clôt la requête en BDD
 $requete->closeCursor();
 
@@ -26,11 +30,45 @@ $requete->closeCursor();
 </head>
 
 <body>
+  <div class="container">
+    <!-- Navbar -->
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+      <a class="navbar-brand">Liste des Disques</a>
+      <form class="form-inline">
+        <a href="./disc_new.php" class="btn btn-primary">Ajouter</a>
+      </form>
+    </nav>
+    <br>
+    <br>
+    <div class="row  ">
+      <?php foreach ($myDiscs as $disc) {
+      ?>
+        <div class="col-md-6 mb-5">
+          <div class="row col-md-12">
+            <div class="col-md-6">
+              <img src="Assets/images/<?= $disc->disc_picture ?>" class="w-100"><br>
+            </div>
+            <div class="col-md-6">
+              <?= $disc->disc_title ?><br>
+              <br>
+              <b>Artist : </b><?= $disc->artist_name ?><br>
+              <br>
+              <b>Year : </b><?= $disc->disc_year ?><br>
+              <br>
+              <b>Genre : </b><?= $disc->disc_genre ?><br>
+              <br>
+              <a href="./disc_detail.php" class="btn btn-primary">Détails</a>
 
-<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-  <a class="navbar-brand">Liste des Disques</a>
-  <form class="form-inline">
-    <button type="button" class="btn btn-primary">Ajouter</button>
-  </form>
+            </div>
+          </div>
+        </div>
 
-</nav>
+
+      <?php
+      }
+      ?>
+    </div>
+  </div>
+</body>
+
+</html>

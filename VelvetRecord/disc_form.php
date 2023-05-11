@@ -1,14 +1,18 @@
 <?php
 
 // on importe le contenu du fichier "db.php"
-include "db.php";
+include ('db.php');
 // on exécute la méthode de connexion à notre BDD
 $db = connexionBase();
 
 // on lance une requête pour chercher toutes les fiches d'artistes
-$requete = $db->query("SELECT * FROM disc INNER JOIN artist on disc.artist_id = artist.artist_id");
+$requete = $db->prepare("SELECT * FROM disc JOIN artist on disc.artist_id = artist.artist_id");
+
+// on ajoute l'ID du disque passé dans l'URL en paramètre et on exécute :
+$requete->execute();
+
 // on récupère tous les résultats trouvés dans une variable
-$tableau = $requete->fetchAll(PDO::FETCH_OBJ);
+$myDiscs = $requete->fetchAll(PDO::FETCH_OBJ);
 // on clôt la requête en BDD
 $requete->closeCursor();
 
@@ -27,7 +31,7 @@ $requete->closeCursor();
 
 <body>
 
-  <div class="container-fluid">
+  <div class="container">
 
     <form action="" id="formulaire" method="post">
       <fieldset>
@@ -71,7 +75,10 @@ $requete->closeCursor();
         <!-- Bouton modifier retour -->
         <button type="button" class="btn btn-primary">Modifier</button>
         <button type="button" class="btn btn-primary">Retour</button>
+      </fieldset>
+    </form>
   </div>
+ 
 
 
 

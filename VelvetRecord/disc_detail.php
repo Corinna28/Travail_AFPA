@@ -1,14 +1,18 @@
 <?php
 
 // on importe le contenu du fichier "db.php"
-include "db.php";
+include ('db.php');
 // on exécute la méthode de connexion à notre BDD
 $db = connexionBase();
 
 // on lance une requête pour chercher toutes les fiches d'artistes
-$requete = $db->query("SELECT * FROM disc INNER JOIN artist on disc.artist_id = artist.artist_id");
+$requete = $db->prepare("SELECT * FROM disc JOIN artist on disc.artist_id = artist.artist_id ");
+
+// on ajoute l'ID du disque passé dans l'URL en paramètre et on exécute :
+$requete->execute();
+
 // on récupère tous les résultats trouvés dans une variable
-$tableau = $requete->fetchAll(PDO::FETCH_OBJ);
+$myDiscs = $requete->fetchAll(PDO::FETCH_OBJ);
 // on clôt la requête en BDD
 $requete->closeCursor();
 
@@ -27,13 +31,57 @@ $requete->closeCursor();
 
 <body>
 
-    <div class="container-fluid">
+    <div class="container">
 
         <form action="" id="formulaire" method="post">
             <fieldset>
 
                 <legend>
                     <p class="h3">Détails</p>
+
                 </legend>
-                <label for="Title">Title* : </label><input type="text" name="title2" id="Title2"><br>
+
+                <div class="row">
+                    <div class="col-md-3 col-xs-12">
+                        <div class="mb-3">
+                            <label for="disabledTextInput" class="form-label">Title*: </label>
+                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Title">
+                        </div>
+                        <div class="mb-3">
+                            <label for="disabledTextInput" class="form-label">Year*:</label>
+                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Year">
+                        </div>
+                        <div class="mb-3">
+                            <label for="disabledTextInput" class="form-label">Label*:</label>
+                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Label">
+                        </div>
+               
+                    </div>
+                    <div class="col-md-3 col-xs-12">
+                        <div class="mb-3">
+                            <label for="disabledTextInput" class="form-label">Artist*:</label>
+                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Artist">
+                        </div>
+                        <div class="mb-3">
+                            <label for="disabledTextInput" class="form-label">Year*:</label>
+                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Year">
+                        </div>
+                        <div class="mb-3">
+                            <label for="disabledTextInput" class="form-label">Price</label>
+                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Price">
+                        </div>
+                    </div>
+
+                </div>
+                <aside>
+
+                </aside>
+                <br>
+                <!-- Bouton modifier supprimer  retour -->
+                <button type="button" class="btn btn-primary">Modifier</button>
+                <button type="button" class="btn btn-primary">Supprimer</button>
+                <button type="button" class="btn btn-primary">Retour</button>
+            </fieldset>
+        </form>
+    </div>
 </body>

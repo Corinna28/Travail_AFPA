@@ -1,14 +1,18 @@
 <?php
 
 // on importe le contenu du fichier "db.php"
-include "db.php";
+include('db.php');
 // on exécute la méthode de connexion à notre BDD
 $db = connexionBase();
 
 // on lance une requête pour chercher toutes les fiches d'artistes
-$requete = $db->query("SELECT * FROM disc INNER JOIN artist on disc.artist_id = artist.artist_id");
+$requete = $db->prepare("SELECT * FROM artist");
+
+// on ajoute l'ID du disque passé dans l'URL en paramètre et on exécute :
+$requete->execute();
+
 // on récupère tous les résultats trouvés dans une variable
-$tableau = $requete->fetchAll(PDO::FETCH_OBJ);
+$myArtists = $requete->fetchAll(PDO::FETCH_ASSOC);
 // on clôt la requête en BDD
 $requete->closeCursor();
 
@@ -27,65 +31,68 @@ $requete->closeCursor();
 
 <body>
 
-  <div class="container-fluid">
+  <div class="container">
 
-    <form action="" id="formulaire" method="post">
+    <!-- <form action="script_disc_ajout.php" id="formulaire" method="post" enctype="multipart/form-data"> -->
+    <form action="disc_new.php" id="formulaire" method="post" enctype="multipart/form-data"> 
+       <!-- Grâce à enctype, le navigateur du visiteur sait qu'il s'apprête à envoyer des fichiers. -->
       <fieldset>
 
         <legend>
-          <p class="h3">Ajouter un Vynile</p>
+          <p class="h3">Ajouter un Vinyle</p>
         </legend>
         <div class="form-group">
           <label for="exampleFormControlInput1">Title*</label>
-          <input type="text" class="form-control" id="title1" placeholder="Veuillez saisir un titre">
+          <input type="text" class="form-control" name="title1" placeholder="Veuillez saisir un titre">
         </div><br>
         <div class="form-group">
           <label for="exampleFormControlInput1">Artist*</label>
-          <input type="text" class="form-control" id="artist1" placeholder="Veuillez saisir un artiste">
+          <select class="form-control" name="artist1" placeholder="Veuillez saisir un artiste">
+            <option value="">Selectionner un Artiste</option>
+            <?php foreach ($myArtists as $artist) { ?>
+
+<!-- recupére l'id de l'artiste pour le menu déroulant (option value="................") -->
+              <option value="<?= $artist['artist_id'] ?>"><?= $artist['artist_name'] ?></option>
+            <?php
+            }
+            ?>
+          </select>
         </div><br>
         <div class="form-group">
           <label for="exampleFormControlInput1">Year*</label>
-          <input type="text" class="form-control" id="year1" placeholder="Veuillez saisir l'Année">
+          <input type="number" class="form-control" name="year1" placeholder="Veuillez saisir l'Année">
         </div><br>
         <div class="form-group">
           <label for="exampleFormControlInput1">Genre*</label>
-          <input type="text" class="form-control" id="Genre1" placeholder="Veuillez saisir le genre">
+          <input type="text" class="form-control" name="genre1" placeholder="Veuillez saisir le genre">
         </div><br>
         <div class="form-group">
           <label for="exampleFormControlInput1">Label*</label>
-          <input type="text" class="form-control" id="label1" placeholder="Veuillez saisir le Label">
+          <input type="text" class="form-control" name="label1" placeholder="Veuillez saisir le Label">
         </div><br>
         <div class="form-group">
           <label for="exampleFormControlInput1">Price*</label>
-          <input type="text" class="form-control" id="price1" placeholder="Veuillez saisir le prix">
+          <input type="number" class="form-control" name="price1" placeholder="Veuillez saisir le prix">
         </div><br>
 
-        <!-- L'upload de fichier -->
+
         <label for="picture">Picture : </label>
         <br>
+      
+
+        <!-- L'upload de fichier -->
 
         <input type="file" id="picture" name="picture" accept="image/png, image/jpeg">
         <br>
         <br>
         <br>
-        <!-- Bouton modifier retour -->
-        <button type="button" class="btn btn-primary">Ajouter</button>
+        <!-- Bouton ajouter retour -->
+        <button type="submit" class="btn btn-primary">Ajouter</button>
         <button type="button" class="btn btn-primary">Retour</button>
+
+      </fieldset>
+    </form>
   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
