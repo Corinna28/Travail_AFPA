@@ -6,7 +6,7 @@ include('db.php');
 $db = connexionBase();
 
 // on lance une requête pour chercher toutes les fiches d'artistes
-$requete = $db->prepare("SELECT * FROM artist");
+$requete = $db->query("SELECT * FROM artist");
 
 // on ajoute l'ID du disque passé dans l'URL en paramètre et on exécute :
 $requete->execute();
@@ -33,63 +33,73 @@ $requete->closeCursor();
 
   <div class="container">
 
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+      <a class="navbar-brand">Ajouter un Vynile</a>
+    </nav>
+    <br>
+    <br>
     <!-- <form action="script_disc_ajout.php" id="formulaire" method="post" enctype="multipart/form-data"> -->
-    <form action="disc_new.php" id="formulaire" method="post" enctype="multipart/form-data"> 
-       <!-- Grâce à enctype, le navigateur du visiteur sait qu'il s'apprête à envoyer des fichiers. -->
+    <form action="disc_new.php" id="formulaire" method="post" enctype="multipart/form-data">
+      <!-- Grâce à enctype, le navigateur du visiteur sait qu'il s'apprête à envoyer des fichiers. -->
       <fieldset>
+        <div class="row">
 
-        <legend>
-          <p class="h3">Ajouter un Vinyle</p>
-        </legend>
-        <div class="form-group">
-          <label for="exampleFormControlInput1">Title*</label>
-          <input type="text" class="form-control" name="title1" placeholder="Veuillez saisir un titre">
-        </div><br>
-        <div class="form-group">
-          <label for="exampleFormControlInput1">Artist*</label>
-          <select class="form-control" name="artist1" placeholder="Veuillez saisir un artiste">
-            <option value="">Selectionner un Artiste</option>
-            <?php foreach ($myArtists as $artist) { ?>
+          <div class="col-md-6 mb-5">
+            <div class="col-mb-12">
+              <div class="col-mb-3">
+                <label for="exampleFormControlInput1">Title*</label>
+                <input type="text" class="form-control" name="title1" placeholder="Enter title">
+              </div><br>
+              <div class="col-mb-3">
+                <label for="exampleFormControlInput1">Artist*</label>
+                <select class="form-control" name="artist1" placeholder="Enter Artist">
+                  <option value="">Artist</option>
+                  <?php foreach ($myArtists as $artist) { ?>
 
-<!-- recupére l'id de l'artiste pour le menu déroulant (option value="................") -->
-              <option value="<?= $artist['artist_id'] ?>"><?= $artist['artist_name'] ?></option>
-            <?php
-            }
-            ?>
-          </select>
-        </div><br>
-        <div class="form-group">
-          <label for="exampleFormControlInput1">Year*</label>
-          <input type="number" class="form-control" name="year1" placeholder="Veuillez saisir l'Année">
-        </div><br>
-        <div class="form-group">
-          <label for="exampleFormControlInput1">Genre*</label>
-          <input type="text" class="form-control" name="genre1" placeholder="Veuillez saisir le genre">
-        </div><br>
-        <div class="form-group">
-          <label for="exampleFormControlInput1">Label*</label>
-          <input type="text" class="form-control" name="label1" placeholder="Veuillez saisir le Label">
-        </div><br>
-        <div class="form-group">
-          <label for="exampleFormControlInput1">Price*</label>
-          <input type="number" class="form-control" name="price1" placeholder="Veuillez saisir le prix">
-        </div><br>
+                    <!-- recupére l'id de l'artiste pour le menu déroulant (option value="................") -->
+                    <option value="<?= $artist['artist_id'] ?>"><?= $artist['artist_name'] ?></option>
+                  <?php
+                  }
+                  ?>
+                </select>
+              </div><br>
+              <div class="col-mb-3">
+                <label for="exampleFormControlInput1">Year*</label>
+                <input type="number" class="form-control" name="year1" placeholder="Enter Year">
+              </div><br>
+              <div class="col-mb-3">
+                <label for="exampleFormControlInput1">Genre*</label>
+                <input type="text" class="form-control" name="genre1" placeholder="Enter genre (Rock,Pop,Prog ...">
+              </div><br>
+              <div class="col-mb-3">
+                <label for="exampleFormControlInput1">Label*</label>
+                <input type="text" class="form-control" name="label1" placeholder="Enter Label (EMI,Warner, Polygram, Univers sale ...)">
+              </div><br>
+              <div class="col-mb-3">
+                <label for="exampleFormControlInput1">Price*</label>
+                <input type="number" class="form-control" name="price1" placeholder="">
+              </div><br>
 
 
-        <label for="picture">Picture : </label>
-        <br>
-      
 
-        <!-- L'upload de fichier -->
+            </div>
+            <label for="picture">Picture : </label>
+            <br>
 
-        <input type="file" id="picture" name="picture" accept="image/png, image/jpeg">
-        <br>
-        <br>
-        <br>
-        <!-- Bouton ajouter retour -->
-        <button type="submit" class="btn btn-primary">Ajouter</button>
-        <button type="button" class="btn btn-primary">Retour</button>
+            <!-- L'upload de fichier -->
 
+            <input type="file" id="picture" name="picture" accept="image/png, image/jpeg">
+            <br>
+
+            <br>
+            <!-- Bouton ajouter retour -->
+            <button type="submit" class="btn btn-primary">Ajouter</button>
+            <!-- Pour reproduire l’action des boutons page précédente et page suivante de votre navigateur, le Javascript utilise la méthode GO qui peut naviguer dans l’historique des liens gardé en mémoire par le navigateur. En effet, il est possible de récupérer la liste des liens visités par le visiteur, la liste « history » qui contient les dix derniers URL.
+http://www.trucsweb.com/tutoriels/javascript/tw302/
+C’est très simple, vous devez choisir un url ou " location " de l’historique en indiquant ça position (son numéro). -1 étant la dernière page visité et +1 la prochaine (si jamais le visiteur a utilisé le bouton " page précédente "). -->
+            <a href="javascript:history.back()" class="btn btn-primary">Retour</a>
+          </div>
+        </div>
       </fieldset>
     </form>
   </div>

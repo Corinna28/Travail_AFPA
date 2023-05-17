@@ -1,18 +1,21 @@
 <?php
 
 // on importe le contenu du fichier "db.php"
-include ('db.php');
+include('db.php');
 // on exécute la méthode de connexion à notre BDD
 $db = connexionBase();
 
+// On récupère l'ID passé en paramètre :
+$id = $_GET["id"];
+
 // on lance une requête pour chercher toutes les fiches d'artistes
-$requete = $db->prepare("SELECT * FROM disc JOIN artist on disc.artist_id = artist.artist_id ");
+$requete = $db->prepare("SELECT * FROM disc JOIN artist on disc.artist_id = artist.artist_id where disc.disc_id=?");
 
 // on ajoute l'ID du disque passé dans l'URL en paramètre et on exécute :
-$requete->execute();
+$requete->execute(array("$id"));
 
 // on récupère tous les résultats trouvés dans une variable
-$myDiscs = $requete->fetchAll(PDO::FETCH_OBJ);
+$details = $requete->fetch(PDO::FETCH_OBJ);
 // on clôt la requête en BDD
 $requete->closeCursor();
 
@@ -33,54 +36,64 @@ $requete->closeCursor();
 
     <div class="container">
 
-        <form action="" id="formulaire" method="post">
+        <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+            <a class="navbar-brand">Détails</a>
+        </nav>
+        <br>
+        <br>
+        <br>
+        <form action="script_disc_delete.php" id="formulaire" method="post" enctype="multipart/form-data">
             <fieldset>
 
-                <legend>
-                    <p class="h3">Détails</p>
-
-                </legend>
-
                 <div class="row">
-                    <div class="col-md-3 col-xs-12">
-                        <div class="mb-3">
-                            <label for="disabledTextInput" class="form-label">Title*: </label>
-                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Title">
+
+                    <div class="col-md-6 mb-5">
+                        <div class="col-mb-12">
+                            <div class="col-mb-3">
+                                <label for="disabledTextInput" class="form-label">Title*: </label>
+                                <input type="text" id="detail" class="form-control" placeholder="<?= $details->disc_title ?>" disabled>
+                            </div>
+                            <div class="mb-3">
+                                <label for="disabledTextInput" class="form-label">Year*:</label>
+                                <input type="text" id="detail2" class="form-control" placeholder="<?= $details->disc_year?>" disabled>
+                            </div>
+                            <div class="mb-3">
+                                <label for="disabledTextInput" class="form-label">Label*:</label>
+                                <input type="text" id="detail3" class="form-control" placeholder="<?= $details->disc_label ?>" disabled>
+                            </div>
+                            <div class="mb-3">
+                                <label for="disabledTextInput" class="form-label">Artist*:</label>
+                                <input type="text" id="detail4" class="form-control" placeholder="<?= $details->artist_name ?>" disabled>
+                            </div>
+                            <div class="mb-3">
+                                <label for="disabledTextInput" class="form-label">Genre*:</label>
+                                <input type="text" id="detail5" class="form-control" placeholder="<?= $details->disc_genre ?>" disabled>
+                            </div>
+                            <div class="mb-3">
+                                <label for="disabledTextInput" class="form-label">Price</label>
+                                <input type="text" id="detail6" class="form-control" placeholder="<?= $details->disc_price ?>" disabled>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="disabledTextInput" class="form-label">Year*:</label>
-                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Year">
-                        </div>
-                        <div class="mb-3">
-                            <label for="disabledTextInput" class="form-label">Label*:</label>
-                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Label">
-                        </div>
-               
-                    </div>
-                    <div class="col-md-3 col-xs-12">
-                        <div class="mb-3">
-                            <label for="disabledTextInput" class="form-label">Artist*:</label>
-                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Artist">
-                        </div>
-                        <div class="mb-3">
-                            <label for="disabledTextInput" class="form-label">Year*:</label>
-                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Year">
-                        </div>
-                        <div class="mb-3">
-                            <label for="disabledTextInput" class="form-label">Price</label>
-                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Price">
-                        </div>
+                        <br>
+                        <br>
+                        <!-- Bouton modifier supprimer  retour -->
+                        <a href="disc_form.php?disc_id=<?= $details->disc_id?>" class="btn btn-primary">Modifier</a>
+                        <button type="button" class="btn btn-primary">Supprimer</button>
+                        
+                        <a href="discs.php" class="btn btn-primary">Retour</a>
                     </div>
 
+                    <!-- image -->
+                    <div class="col-md-6 mb-5">
+                        <div class="row col-mb-12">
+                            <div class="col-md-6">
+                                <img src="./Assets/images/<?= $details->disc_picture ?>" class="w-150"><br>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <aside>
 
-                </aside>
-                <br>
-                <!-- Bouton modifier supprimer  retour -->
-                <button type="button" class="btn btn-primary">Modifier</button>
-                <button type="button" class="btn btn-primary">Supprimer</button>
-                <button type="button" class="btn btn-primary">Retour</button>
+
             </fieldset>
         </form>
     </div>

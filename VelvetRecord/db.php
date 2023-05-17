@@ -10,7 +10,7 @@ function ConnexionBase() {
     } catch (Exception $e) {
         echo "Erreur : " . $e->getMessage() . "<br>";
         echo "N° : " . $e->getCode();
-        die("Fin du script");
+        die("Fin du script"); 
     }
 }
 ?>

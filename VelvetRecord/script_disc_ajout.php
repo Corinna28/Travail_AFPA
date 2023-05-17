@@ -34,6 +34,8 @@ if (isset($_FILES['monfichier']) and $_FILES['monfichier']['error'] == 0) {
 
             move_uploaded_file($_FILES['monfichier']['tmp_name'], 'Assets/images' . basename($_FILES['monfichier']['name']));
 
+         
+
             echo "L'envoi a bien été effectué !";
         }
     }

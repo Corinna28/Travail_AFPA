@@ -1,7 +1,7 @@
 <?php
 
 // on importe le contenu du fichier "db.php"
-include ('db.php');
+include('db.php');
 // on exécute la méthode de connexion à notre BDD
 $db = connexionBase();
 
@@ -49,16 +49,21 @@ $requete->closeCursor();
               <img src="Assets/images/<?= $disc->disc_picture ?>" class="w-100"><br>
             </div>
             <div class="col-md-6">
-              <?= $disc->disc_title ?><br>
-              <br>
-              <b>Artist : </b><?= $disc->artist_name ?><br>
-              <br>
-              <b>Year : </b><?= $disc->disc_year ?><br>
-              <br>
-              <b>Genre : </b><?= $disc->disc_genre ?><br>
-              <br>
-              <a href="./disc_detail.php" class="btn btn-primary">Détails</a>
-
+              <div>
+                <?= $disc->disc_title ?><br>
+                <br>
+                <b>Artist : </b><?= $disc->artist_name ?><br>
+                <br>
+                <b>Year : </b><?= $disc->disc_year ?><br>
+                <br>
+                <b>Genre : </b><?= $disc->disc_genre ?><br>
+                <br>
+             
+              </div>
+              <div> 
+                  <!-- Récupère l'ID généré à partir de l'opération INSERT précédente -->
+                <a href="disc_detail.php?id=<?= $disc->disc_id?>" class="btn btn-primary">Détails</a>
+              </div>
             </div>
           </div>
         </div>

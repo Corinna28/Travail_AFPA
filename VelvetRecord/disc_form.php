@@ -1,18 +1,20 @@
 <?php
 
 // on importe le contenu du fichier "db.php"
-include ('db.php');
+include('db.php');
 // on exécute la méthode de connexion à notre BDD
-$db = connexionBase();
+$db = ConnexionBase();
+
+// On récupère l'ID passé en paramètre :
+$id = $_GET["disc_id"];
 
 // on lance une requête pour chercher toutes les fiches d'artistes
-$requete = $db->prepare("SELECT * FROM disc JOIN artist on disc.artist_id = artist.artist_id");
+$requete = $db->prepare("SELECT * FROM disc JOIN artist on disc.artist_id = artist.artist_id where disc.disc_id=?");
 
 // on ajoute l'ID du disque passé dans l'URL en paramètre et on exécute :
-$requete->execute();
-
+$requete->execute(array($id));
 // on récupère tous les résultats trouvés dans une variable
-$myDiscs = $requete->fetchAll(PDO::FETCH_OBJ);
+$modif = $requete->fetch(PDO::FETCH_OBJ);
 // on clôt la requête en BDD
 $requete->closeCursor();
 
@@ -32,53 +34,71 @@ $requete->closeCursor();
 <body>
 
   <div class="container">
-
-    <form action="" id="formulaire" method="post">
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+      <a class="navbar-brand">Modifier un Vynile</a>
+    </nav>
+    <br>
+    <br>
+    <br>
+    <form action="script_disc_modif.php" id="formulaire" method="post" enctype="multipart/form-data">
       <fieldset>
 
-        <legend>
-          <p class="h3">Modifier un Vynile</p>
-        </legend>
-        <div class="form-group">
-          <label for="exampleFormControlInput1">Title*</label>
-          <input type="text" class="form-control" id="title" placeholder="Veuillez saisir un titre">
-        </div><br>
-        <div class="form-group">
-          <label for="exampleFormControlInput1">Artist*</label>
-          <input type="text" class="form-control" id="artist" placeholder="Veuillez saisir un artiste">
-        </div><br>
-        <div class="form-group">
-          <label for="exampleFormControlInput1">Year*</label>
-          <input type="text" class="form-control" id="year" placeholder="Veuillez saisir l'Année">
-        </div><br>
-        <div class="form-group">
-          <label for="exampleFormControlInput1">Genre*</label>
-          <input type="text" class="form-control" id="Genre" placeholder="Veuillez saisir le genre">
-        </div><br>
-        <div class="form-group">
-          <label for="exampleFormControlInput1">Label*</label>
-          <input type="text" class="form-control" id="label" placeholder="Veuillez saisir le Label">
-        </div><br>
-        <div class="form-group">
-          <label for="exampleFormControlInput1">Price*</label>
-          <input type="text" class="form-control" id="price" placeholder="Veuillez saisir le prix">
-        </div><br>
+        <div class="row">
 
-        <!-- L'upload de fichier -->
-        <label for="picture">Picture : </label>
-        <br>
+          <div class="col-md-6 mb-5">
+            <div class="col-mb-12">
+              <div class="col-mb-3">
+                <label for="exampleFormControlInput1">Title*</label>
+                <input type="text" class="form-control" id="title" placeholder="<?= $modif->disc_title ?>">
+              </div><br>
+              <div class="col-mb-3">
+                <label for="exampleFormControlInput1">Artist*</label>
+                <input type="text" class="form-control" id="artist" placeholder="<?= $modif->artist_name ?>">
+              </div><br>
+              <div class="col-mb-3">
+                <label for="exampleFormControlInput1">Year*</label>
+                <input type="text" class="form-control" id="year" placeholder="<?= $modif->disc_year ?>">
+              </div><br>
+              <div class="col-mb-3">
+                <label for="exampleFormControlInput1">Genre*</label>
+                <input type="text" class="form-control" id="Genre" placeholder="<?= $modif->disc_genre ?>">
+              </div><br>
+              <div class="col-mb-3">
+                <label for="exampleFormControlInput1">Label*</label>
+                <input type="text" class="form-control" id="label" placeholder="<?= $modif->disc_label ?>">
+              </div><br>
+              <div class="col-mb-3">
+                <label for="exampleFormControlInput1">Price*</label>
+                <input type="text" class="form-control" id="price" placeholder="<?= $modif->disc_price ?>">
+              </div><br>
 
-        <input type="file" id="picture" name="picture" accept="image/png, image/jpeg">
-        <br>
-        <br>
-        <br>
-        <!-- Bouton modifier retour -->
-        <button type="button" class="btn btn-primary">Modifier</button>
-        <button type="button" class="btn btn-primary">Retour</button>
+              <!-- L'upload de fichier -->
+              <label for="picture">Picture : </label>
+              <br>
+
+              <input type="file" id="picture" name="picture" accept="image/png, image/jpeg"></input>
+              <br>
+              <br>
+              <br>
+              <!-- Bouton modifier retour -->
+              <a href="button" class="btn btn-primary">Modifier</a>
+
+              <a href="discs.php" class="btn btn-primary">Retour</a>
+            </div>
+          </div>
+          <!-- image -->
+          <div class="col-md-6 mb-5">
+            <div class="row col-mb-12">
+              <div class="col-md-6">
+                <img src="./Assets/images/<?= $modif->disc_picture ?>" class="w-150"><br>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </fieldset>
     </form>
   </div>
- 
 
 
 
@@ -94,7 +114,8 @@ $requete->closeCursor();
 
 
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
