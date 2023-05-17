@@ -18,6 +18,14 @@ $modif = $requete->fetch(PDO::FETCH_OBJ);
 // on clôt la requête en BDD
 $requete->closeCursor();
 
+$requete2 = $db->query("SELECT * FROM artist");
+// on ajoute l'ID du disque passé dans l'URL en paramètre et on exécute :
+$requete2->execute();
+// on récupère tous les résultats trouvés dans une variable
+$myArtists = $requete2->fetchAll(PDO::FETCH_OBJ);
+$requete2->closeCursor();
+
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -42,34 +50,41 @@ $requete->closeCursor();
     <br>
     <form action="script_disc_modif.php" id="formulaire" method="post" enctype="multipart/form-data">
       <fieldset>
-
+        <input type="hidden" name="id" value="<?= $modif->disc_id ?>">
         <div class="row">
 
           <div class="col-md-6 mb-5">
             <div class="col-mb-12">
               <div class="col-mb-3">
                 <label for="exampleFormControlInput1">Title*</label>
-                <input type="text" class="form-control" id="title" placeholder="<?= $modif->disc_title ?>">
+                <input type="text" class="form-control" name="title" value="<?= $modif->disc_title ?>">
               </div><br>
               <div class="col-mb-3">
                 <label for="exampleFormControlInput1">Artist*</label>
-                <input type="text" class="form-control" id="artist" placeholder="<?= $modif->artist_name ?>">
+                <select class="form-control" name="artist">
+                  <?php foreach ($myArtists as $artist) { ?>
+                    <!-- recupére l'id de l'artiste pour le menu déroulant (option value="................") -->
+                    <option value="<?= $artist->artist_id ?>" <?php if($artist->artist_id==$modif->artist_id) echo 'selected'?>><?= $artist->artist_name ?></option>
+                  <?php
+                  }
+                  ?>
+                </select>
               </div><br>
               <div class="col-mb-3">
                 <label for="exampleFormControlInput1">Year*</label>
-                <input type="text" class="form-control" id="year" placeholder="<?= $modif->disc_year ?>">
+                <input type="text" class="form-control" name="year" value="<?= $modif->disc_year ?>">
               </div><br>
               <div class="col-mb-3">
                 <label for="exampleFormControlInput1">Genre*</label>
-                <input type="text" class="form-control" id="Genre" placeholder="<?= $modif->disc_genre ?>">
+                <input type="text" class="form-control" name="genre" value="<?= $modif->disc_genre ?>">
               </div><br>
               <div class="col-mb-3">
                 <label for="exampleFormControlInput1">Label*</label>
-                <input type="text" class="form-control" id="label" placeholder="<?= $modif->disc_label ?>">
+                <input type="text" class="form-control" name="label" value="<?= $modif->disc_label ?>">
               </div><br>
               <div class="col-mb-3">
                 <label for="exampleFormControlInput1">Price*</label>
-                <input type="text" class="form-control" id="price" placeholder="<?= $modif->disc_price ?>">
+                <input type="text" class="form-control" name="price" value="<?= $modif->disc_price ?>">
               </div><br>
 
               <!-- L'upload de fichier -->
@@ -81,7 +96,7 @@ $requete->closeCursor();
               <br>
               <br>
               <!-- Bouton modifier retour -->
-              <a href="button" class="btn btn-primary">Modifier</a>
+              <button type="submit" class="btn btn-primary">Modifier</button>
 
               <a href="discs.php" class="btn btn-primary">Retour</a>
             </div>

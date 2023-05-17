@@ -3,17 +3,14 @@
 // on importe le contenu du fichier "db.php"
 include('db.php');
 // on exécute la méthode de connexion à notre BDD
-$db = connexionBase();
+$db = ConnexionBase();
 
 // On récupère l'ID passé en paramètre :
 $id = $_GET["id"];
-
 // on lance une requête pour chercher toutes les fiches d'artistes
 $requete = $db->prepare("SELECT * FROM disc JOIN artist on disc.artist_id = artist.artist_id where disc.disc_id=?");
-
 // on ajoute l'ID du disque passé dans l'URL en paramètre et on exécute :
-$requete->execute(array("$id"));
-
+$requete->execute(array($id));
 // on récupère tous les résultats trouvés dans une variable
 $details = $requete->fetch(PDO::FETCH_OBJ);
 // on clôt la requête en BDD
@@ -78,7 +75,7 @@ $requete->closeCursor();
                         <br>
                         <!-- Bouton modifier supprimer  retour -->
                         <a href="disc_form.php?disc_id=<?= $details->disc_id?>" class="btn btn-primary">Modifier</a>
-                        <button type="button" class="btn btn-primary">Supprimer</button>
+                        <a href="script_disc_delete.php?id=<?= $details->disc_id?>" class="btn btn-primary">Supprimer</a>
                         
                         <a href="discs.php" class="btn btn-primary">Retour</a>
                     </div>
