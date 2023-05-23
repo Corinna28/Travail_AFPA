@@ -7,6 +7,7 @@ $year = (isset($_POST['year']) && $_POST['year'] != "") ? $_POST['year'] : Null;
 $genre = (isset($_POST['genre']) && $_POST['genre'] != "") ? $_POST['genre'] : Null;
 $label = (isset($_POST['label']) && $_POST['label'] != "") ? $_POST['label'] : Null;
 $price = (isset($_POST['price']) && $_POST['price'] != "") ? $_POST['price'] : Null;
+$picture = (isset($_POST['picture']) && $_POST['picture'] != "") ? $_POST['picture'] : Null;
 
 
 // En cas d'erreur, on renvoie vers le formulaire
@@ -20,14 +21,15 @@ $db = connexionBase();
 
 try {
     // Construction de la requête UPDATE sans injection SQL :
-    $requete = $db->prepare("UPDATE disc SET disc_title=:title,artist_id=:artist,disc_year=:year,disc_genre=:genre,disc_label=:label,disc_price=:price WHERE disc.disc_id=:id");
+    $requete = $db->prepare("UPDATE disc SET disc_title=:title,artist_id=:artist,disc_year=:year,disc_genre=:genre,disc_label=:label,disc_price=:price,disc_picture=:picture WHERE disc.disc_id=:id");
     $requete->bindValue(":id", $id);
     $requete->bindValue(":title", $title);
-    $requete->bindValue(":artist", $artist);
     $requete->bindValue(":year", $year);
-    $requete->bindValue(":genre", $genre);
     $requete->bindValue(":label", $label);
+    $requete->bindValue(":artist", $artist);
+    $requete->bindValue(":genre", $genre);
     $requete->bindValue(":price", $price);
+    $requete->bindValue(":picture",$picture);
 
     $requete->execute();
     $requete->closeCursor();

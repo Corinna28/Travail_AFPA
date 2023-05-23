@@ -98,7 +98,7 @@ $requete2->closeCursor();
               <!-- Bouton modifier retour -->
               <button type="submit" class="btn btn-primary">Modifier</button>
 
-              <a href="discs.php" class="btn btn-primary">Retour</a>
+              <a href="javascript:history.back()" class="btn btn-primary">Retour</a>
             </div>
           </div>
           <!-- image -->

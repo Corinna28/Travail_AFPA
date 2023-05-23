@@ -58,11 +58,11 @@ $requete->closeCursor();
                 <br>
                 <b>Genre : </b><?= $disc->disc_genre ?><br>
                 <br>
-             
+
               </div>
-              <div> 
-                  <!-- Récupère l'ID généré à partir de l'opération INSERT précédente -->
-                <a href="disc_detail.php?id=<?= $disc->disc_id?>" class="btn btn-primary">Détails</a>
+              <div>
+                <!-- Récupère l'ID généré à partir de l'opération INSERT précédente -->
+                <a href="disc_detail.php?id=<?= $disc->disc_id ?>" class="btn btn-primary">Détails</a>
               </div>
             </div>
           </div>
