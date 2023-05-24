@@ -55,27 +55,27 @@ $requete->closeCursor();
                         <div class="col-mb-12">
                             <div class="col-mb-3">
                                 <label for="disabledTextInput" class="form-label">Title*: </label>
-                                <input type="text" id="detail" class="form-control" placeholder="<?= $details->disc_title ?>" disabled>
+                                <input type="text" id="title" class="form-control" placeholder="<?= $details->disc_title ?>" disabled>
                             </div>
                             <div class="mb-3">
                                 <label for="disabledTextInput" class="form-label">Year*:</label>
-                                <input type="text" id="detail2" class="form-control" placeholder="<?= $details->disc_year ?>" disabled>
+                                <input type="text" id="year" class="form-control" placeholder="<?= $details->disc_year ?>" disabled>
                             </div>
                             <div class="mb-3">
                                 <label for="disabledTextInput" class="form-label">Label*:</label>
-                                <input type="text" id="detail3" class="form-control" placeholder="<?= $details->disc_label ?>" disabled>
+                                <input type="text" id="label" class="form-control" placeholder="<?= $details->disc_label ?>" disabled>
                             </div>
                             <div class="mb-3">
                                 <label for="disabledTextInput" class="form-label">Artist*:</label>
-                                <input type="text" id="detail4" class="form-control" placeholder="<?= $details->artist_name ?>" disabled>
+                                <input type="text" id="artist" class="form-control" placeholder="<?= $details->artist_name ?>" disabled>
                             </div>
                             <div class="mb-3">
                                 <label for="disabledTextInput" class="form-label">Genre*:</label>
-                                <input type="text" id="detail5" class="form-control" placeholder="<?= $details->disc_genre ?>" disabled>
+                                <input type="text" id="genre" class="form-control" placeholder="<?= $details->disc_genre ?>" disabled>
                             </div>
                             <div class="mb-3">
                                 <label for="disabledTextInput" class="form-label">Price</label>
-                                <input type="text" id="detail6" class="form-control" placeholder="<?= $details->disc_price ?>" disabled>
+                                <input type="text" id="price" class="form-control" placeholder="<?= $details->disc_price ?>" disabled>
                             </div>
                         </div>
                         <br>
@@ -91,7 +91,7 @@ $requete->closeCursor();
                     <div class="col-md-6 mb-5">
                         <div class="row col-mb-12">
                             <div class="col-md-4">
-                                <img src="./Assets/images/<?= $details->disc_picture ?>" class="w-150"><br>
+                                <img src="./Assets/images/<?= $details->disc_picture ?>" class="w-150" ><br>
                             </div>
                         </div>
                     </div>

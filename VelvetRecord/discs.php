@@ -16,6 +16,7 @@ $myDiscs = $requete->fetchAll(PDO::FETCH_OBJ);
 // on clôt la requête en BDD
 $requete->closeCursor();
 
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">

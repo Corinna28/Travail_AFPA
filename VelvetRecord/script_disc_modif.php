@@ -14,6 +14,40 @@ if ($title == Null || $artist == Null || $year == Null  || $genre == Null  || $l
     header("Location: disc_form.php?id=" . $id);
 }
 
+    // Gestion de l'upload de l'image
+    $filename = null;
+    if (isset($_FILES["picture"]) && $_FILES["picture"]["error"] == 0) {
+        $allowedExtensions = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
+        $filename = $_FILES["picture"]["name"];
+        $filetype = $_FILES["picture"]["type"];
+        $filesize = $_FILES["picture"]["size"];
+
+        $ext = pathinfo($filename, PATHINFO_EXTENSION);
+        if (!array_key_exists($ext, $allowedExtensions)) {
+            die("Erreur : Veuillez sélectionner un format de fichier valide.");
+        }
+
+        $maxsize = 5 * 1024 * 1024;
+        if ($filesize > $maxsize) {
+            die("Erreur: La taille du fichier dépasse la limite autorisée.");
+        }
+
+        if (in_array($filetype, $allowedExtensions)) {
+            $picture = $filename;
+            $targetPath = "./Assets/images/" . $filename;
+            if (file_exists($targetPath)) {
+                echo $filename . " Ce fichier existe déjà.";
+            } else {
+                move_uploaded_file($_FILES["picture"]["tmp_name"], $targetPath);
+                echo "Bravo votre fichier a été téléchargé avec succès.";
+            }
+        } else {
+            echo "Erreur: Problème lors du téléchargement du fichier. Veuillez réessayer.";
+        }
+    } else {
+        echo "Erreur: " . $_FILES["picture"]["error"];
+    }
+
 // Si la vérification des données est ok :
 include ('db.php');
 $db = connexionBase();
