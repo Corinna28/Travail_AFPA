@@ -30,7 +30,13 @@ $requete->closeCursor();
 </head>
 
 <body>
-
+<!-- couleur texte -->
+<style>
+    body {
+      color: darkmagenta;
+      font-weight: bold;
+    }
+  </style>
   <div class="container">
 
     <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
@@ -39,7 +45,7 @@ $requete->closeCursor();
     <br>
     <br>
     <!-- <form action="script_disc_ajout.php" id="formulaire" method="post" enctype="multipart/form-data"> -->
-    <form action="disc_new.php" id="formulaire" method="post" enctype="multipart/form-data">
+    <form action="script_disc_ajout.php" id="formulaire" method="post" enctype="multipart/form-data">
       <!-- Grâce à enctype, le navigateur du visiteur sait qu'il s'apprête à envoyer des fichiers. -->
       <fieldset>
         <div class="row">
@@ -48,11 +54,11 @@ $requete->closeCursor();
             <div class="col-mb-12">
               <div class="col-mb-3">
                 <label for="exampleFormControlInput1">Title*</label>
-                <input type="text" class="form-control" name="title1" placeholder="Enter title">
+                <input type="text" class="form-control" name="title" placeholder="Enter title">
               </div><br>
               <div class="col-mb-3">
                 <label for="exampleFormControlInput1">Artist*</label>
-                <select class="form-control" name="artist1" placeholder="Enter Artist">
+                <select class="form-control" name="artist" placeholder="Enter Artist">
                   <option value="">Artist</option>
                   <?php foreach ($myArtists as $artist) { ?>
 
@@ -65,19 +71,19 @@ $requete->closeCursor();
               </div><br>
               <div class="col-mb-3">
                 <label for="exampleFormControlInput1">Year*</label>
-                <input type="number" class="form-control" name="year1" placeholder="Enter Year">
+                <input type="number" class="form-control" name="year" placeholder="Enter Year">
               </div><br>
               <div class="col-mb-3">
                 <label for="exampleFormControlInput1">Genre*</label>
-                <input type="text" class="form-control" name="genre1" placeholder="Enter genre (Rock,Pop,Prog ...">
+                <input type="text" class="form-control" name="genre" placeholder="Enter genre (Rock,Pop,Prog ...">
               </div><br>
               <div class="col-mb-3">
                 <label for="exampleFormControlInput1">Label*</label>
-                <input type="text" class="form-control" name="label1" placeholder="Enter Label (EMI,Warner, Polygram, Univers sale ...)">
+                <input type="text" class="form-control" name="label" placeholder="Enter Label (EMI,Warner, Polygram, Univers sale ...)">
               </div><br>
               <div class="col-mb-3">
                 <label for="exampleFormControlInput1">Price*</label>
-                <input type="number" class="form-control" name="price1" placeholder="">
+                <input type="number" class="form-control" name="prix" placeholder="">
               </div><br>
 
 
@@ -93,11 +99,11 @@ $requete->closeCursor();
 
             <br>
             <!-- Bouton ajouter retour -->
-            <button type="submit" class="btn btn-primary">Ajouter</button>
+            <button type="submit" class="btn btn-outline-primary">Ajouter</button>
             <!-- Pour reproduire l’action des boutons page précédente et page suivante de votre navigateur, le Javascript utilise la méthode GO qui peut naviguer dans l’historique des liens gardé en mémoire par le navigateur. En effet, il est possible de récupérer la liste des liens visités par le visiteur, la liste « history » qui contient les dix derniers URL.
 http://www.trucsweb.com/tutoriels/javascript/tw302/
 C’est très simple, vous devez choisir un url ou " location " de l’historique en indiquant ça position (son numéro). -1 étant la dernière page visité et +1 la prochaine (si jamais le visiteur a utilisé le bouton " page précédente "). -->
-            <a href="javascript:history.back()" class="btn btn-primary">Retour</a>
+            <a href="javascript:history.back()" class="btn btn-outline-primary">Retour</a>
           </div>
         </div>
       </fieldset>

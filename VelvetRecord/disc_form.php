@@ -40,6 +40,13 @@ $requete2->closeCursor();
 </head>
 
 <body>
+  <!-- couleur texte -->
+  <style>
+    body {
+      color: darkmagenta;
+      font-weight: bold;
+    }
+  </style>
 
   <div class="container">
     <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
@@ -64,7 +71,7 @@ $requete2->closeCursor();
                 <select class="form-control" name="artist">
                   <?php foreach ($myArtists as $artist) { ?>
                     <!-- recupére l'id de l'artiste pour le menu déroulant (option value="................") -->
-                    <option value="<?= $artist->artist_id ?>" <?php if($artist->artist_id==$modif->artist_id) echo 'selected'?>><?= $artist->artist_name ?></option>
+                    <option value="<?= $artist->artist_id ?>" <?php if ($artist->artist_id == $modif->artist_id) echo 'selected' ?>><?= $artist->artist_name ?></option>
                   <?php
                   }
                   ?>
@@ -96,9 +103,9 @@ $requete2->closeCursor();
               <br>
               <br>
               <!-- Bouton modifier retour -->
-              <button type="submit" class="btn btn-primary">Modifier</button>
+              <button type="submit" class="btn btn-outline-primary">Modifier</button>
 
-              <a href="javascript:history.back()" class="btn btn-primary">Retour</a>
+              <a href="javascript:history.back()" class="btn btn-outline-primary">Retour</a>
             </div>
           </div>
           <!-- image -->

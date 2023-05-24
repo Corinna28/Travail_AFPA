@@ -30,6 +30,14 @@ $requete->closeCursor();
 </head>
 
 <body>
+
+<!-- couleur texte -->
+  <style>
+    body {
+      color: darkmagenta;
+      font-weight: bold;
+    }
+  </style>
   <div class="container">
     <!-- Navbar -->
     <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
@@ -62,7 +70,7 @@ $requete->closeCursor();
               </div>
               <div>
                 <!-- Récupère l'ID généré à partir de l'opération INSERT précédente -->
-                <a href="disc_detail.php?id=<?= $disc->disc_id ?>" class="btn btn-primary">Détails</a>
+                <a href="disc_detail.php?id=<?= $disc->disc_id ?>" class="btn btn-outline-primary">Détails</a>
               </div>
             </div>
           </div>

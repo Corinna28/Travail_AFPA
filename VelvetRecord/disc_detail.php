@@ -30,6 +30,13 @@ $requete->closeCursor();
 </head>
 
 <body>
+    <!-- couleur texte -->
+    <style>
+        body {
+            color: darkmagenta;
+            font-weight: bold;
+        }
+    </style>
 
     <div class="container">
 
@@ -52,7 +59,7 @@ $requete->closeCursor();
                             </div>
                             <div class="mb-3">
                                 <label for="disabledTextInput" class="form-label">Year*:</label>
-                                <input type="text" id="detail2" class="form-control" placeholder="<?= $details->disc_year?>" disabled>
+                                <input type="text" id="detail2" class="form-control" placeholder="<?= $details->disc_year ?>" disabled>
                             </div>
                             <div class="mb-3">
                                 <label for="disabledTextInput" class="form-label">Label*:</label>
@@ -74,17 +81,17 @@ $requete->closeCursor();
                         <br>
                         <br>
                         <!-- Bouton modifier supprimer  retour -->
-                        <a href="disc_form.php?disc_id=<?= $details->disc_id?>" class="btn btn-primary">Modifier</a>
-                        <a href="script_disc_delete.php?id=<?= $details->disc_id?>" class="btn btn-primary">Supprimer</a>
-                        
-                        <a href="discs.php" class="btn btn-primary">Retour</a>
+                        <a href="disc_form.php?disc_id=<?= $details->disc_id ?>" class="btn btn-outline-primary">Modifier</a>
+                        <a href="script_disc_delete.php?id=<?= $details->disc_id ?>" class="btn btn-outline-primary">Supprimer</a>
+
+                        <a href="discs.php" class="btn btn-outline-primary">Retour</a>
                     </div>
 
                     <!-- image -->
                     <div class="col-md-6 mb-5">
                         <div class="row col-mb-12">
                             <div class="col-md-4">
-                                <img src="./Assets/images/<?= $details->disc_picture ?>" class="w-150" ><br>
+                                <img src="./Assets/images/<?= $details->disc_picture ?>" class="w-150"><br>
                             </div>
                         </div>
                     </div>

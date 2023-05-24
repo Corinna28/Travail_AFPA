@@ -1,28 +1,5 @@
 <?php
-    // // Contrôle de l'ID (si inexistant ou <= 0, retour à la liste) :
-
-    // // Si la vérification est ok :
-    // require "db.php"; 
-    // $db = connexionBase();
-
-    // try {
-    //     // Construction de la requête DELETE sans injection SQL :
-    //     $id = $_GET["disc_id"];
-    //     $requete = $db->prepare("DELETE FROM disc WHERE disc_id = ".$id);
-    //     $requete->execute();
-    // }
-    // catch (Exception $e) {
-    //     print_r($e->getMessage());
-    //     die("fin");
-
-    // }
-
-    // // Si OK: redirection vers la page artists.php
-    // // TrtRedirection:
-    // header("Location: discs.php");
-    // exit;
-
-    // Contrôle de l'ID (si inexistant ou <= 0, retour à la liste) :
+        // Contrôle de l'ID (si inexistant ou <= 0, retour à la liste) :
     if (!(isset($_GET['id'])) || intval($_GET['id']) <= 0) GOTO TrtRedirection;
 
     // Si la vérification est ok :

@@ -9,19 +9,19 @@ $label = (isset($_POST['label']) && $_POST['label'] != "") ? $_POST['label'] : N
 $price = (isset($_POST['price']) && $_POST['price'] != "") ? $_POST['price'] : Null;
 $picture = (isset($_POST['picture']) && $_POST['picture'] != "") ? $_POST['picture'] : Null;
 
-
 // En cas d'erreur, on renvoie vers le formulaire
 if ($title == Null || $artist == Null || $year == Null  || $genre == Null  || $label == Null  || $price == Null ) {
     header("Location: disc_form.php?id=" . $id);
 }
 
 // Si la vérification des données est ok :
-require "db.php";
+include ('db.php');
 $db = connexionBase();
 
 try {
     // Construction de la requête UPDATE sans injection SQL :
     $requete = $db->prepare("UPDATE disc SET disc_title=:title,artist_id=:artist,disc_year=:year,disc_genre=:genre,disc_label=:label,disc_price=:price,disc_picture=:picture WHERE disc.disc_id=:id");
+     // Association des valeurs aux paramètres via bindValue() 
     $requete->bindValue(":id", $id);
     $requete->bindValue(":title", $title);
     $requete->bindValue(":year", $year);
