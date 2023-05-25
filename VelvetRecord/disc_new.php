@@ -30,13 +30,7 @@ $requete->closeCursor();
 </head>
 
 <body>
-<!-- couleur texte -->
-<style>
-    body {
-      color: darkmagenta;
-      font-weight: bold;
-    }
-  </style>
+  
   <div class="container">
 
     <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
@@ -100,16 +94,13 @@ $requete->closeCursor();
             <br>
             <!-- Bouton ajouter retour -->
             <button type="submit" class="btn btn-outline-primary">Ajouter</button>
-            <!-- Pour reproduire l’action des boutons page précédente et page suivante de votre navigateur, le Javascript utilise la méthode GO qui peut naviguer dans l’historique des liens gardé en mémoire par le navigateur. En effet, il est possible de récupérer la liste des liens visités par le visiteur, la liste « history » qui contient les dix derniers URL.
-http://www.trucsweb.com/tutoriels/javascript/tw302/
-C’est très simple, vous devez choisir un url ou " location " de l’historique en indiquant ça position (son numéro). -1 étant la dernière page visité et +1 la prochaine (si jamais le visiteur a utilisé le bouton " page précédente "). -->
-            <a href="javascript:history.back()" class="btn btn-outline-primary">Retour</a>
+            <a href="discs.php" class="btn btn-outline-primary">Retour</a>
           </div>
         </div>
       </fieldset>
     </form>
   </div>
- 
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
 </body>

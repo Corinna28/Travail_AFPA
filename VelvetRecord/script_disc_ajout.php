@@ -64,8 +64,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $requete->execute();
         $requete->closeCursor();
     } catch (Exception $e) {
-        var_dump($requete->queryString);
-        var_dump($requete->errorInfo());
+        // var_dump($requete->queryString);
+        // var_dump($requete->errorInfo());
         echo "Erreur : " . $requete->errorInfo()[2] . "<br>";
         die("Fin du script (script_disc_ajout.php)");
     }
@@ -74,4 +74,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: discs.php");
     exit();
 }
+
 ?>

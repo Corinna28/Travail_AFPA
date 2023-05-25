@@ -30,13 +30,6 @@ $requete->closeCursor();
 </head>
 
 <body>
-    <!-- couleur texte -->
-    <style>
-        body {
-            color: darkmagenta;
-            font-weight: bold;
-        }
-    </style>
 
     <div class="container">
 

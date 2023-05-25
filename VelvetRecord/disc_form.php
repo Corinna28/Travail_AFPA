@@ -40,14 +40,7 @@ $requete2->closeCursor();
 </head>
 
 <body>
-  <!-- couleur texte -->
-  <style>
-    body {
-      color: darkmagenta;
-      font-weight: bold;
-    }
-  </style>
-
+  
   <div class="container">
     <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
       <a class="navbar-brand">Modifier un Vynile</a>

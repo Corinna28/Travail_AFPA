@@ -55,3 +55,12 @@ INSERT INTO disc (disc_id, disc_title, disc_year, disc_picture, disc_label, disc
 ;
 
 
+CREATE TABLE users (
+	user_id	INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	username VARCHAR(50) NOT NULL,
+	password VARCHAR(255) NOT NULL
+);
+
+INSERT INTO users (user_id, username, password) VALUES
+-- log admin, mdp 12345
+(1, 'admin', '12345');

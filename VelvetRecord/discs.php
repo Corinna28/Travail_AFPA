@@ -32,18 +32,13 @@ $requete->closeCursor();
 
 <body>
 
-<!-- couleur texte -->
-  <style>
-    body {
-      color: darkmagenta;
-      font-weight: bold;
-    }
-  </style>
   <div class="container">
     <!-- Navbar -->
     <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
       <a class="navbar-brand">Liste des Disques</a>
       <form class="form-inline">
+        <a href="./login_form.php" class="btn btn-primary">Se Connecter</a>
+        <a href="./register.php" class="btn btn-primary">S'enregistrer</a>
         <a href="./disc_new.php" class="btn btn-primary">Ajouter</a>
       </form>
     </nav>
