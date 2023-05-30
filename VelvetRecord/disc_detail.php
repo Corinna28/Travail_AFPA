@@ -75,7 +75,7 @@ $requete->closeCursor();
                         <br>
                         <!-- Bouton modifier supprimer  retour -->
                         <a href="disc_form.php?disc_id=<?= $details->disc_id ?>" class="btn btn-outline-primary">Modifier</a>
-                        <a href="script_disc_delete.php?id=<?= $details->disc_id ?>" class="btn btn-outline-primary">Supprimer</a>
+                        <a href="script_disc_delete.php?id=<?= $details->disc_id ?>" class="btn btn-outline-primary" onClick="return confirm('supprimer le disque ?')">Supprimer</a>
 
                         <a href="discs.php" class="btn btn-outline-primary">Retour</a>
                     </div>

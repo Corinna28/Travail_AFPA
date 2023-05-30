@@ -75,3 +75,5 @@ try {
 // Si OK: redirection vers la page disc_detail.php
 header("Location: disc_detail.php?id=" . $id);
 exit;
+
+?>

@@ -22,4 +22,5 @@
     TrtRedirection:
     header("Location: discs.php");
     exit;
-    
+
+?>

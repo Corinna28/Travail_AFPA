@@ -1,5 +1,9 @@
-<?php
+<?php    
+// Si la vérification des données est ok :
+    include('db.php');
+    $db = connexionBase();
 // Vérification des données reçues du formulaire
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Récupération des valeurs :
@@ -12,9 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($username == Null || $password == Null || $confirmation == Null) {
         header("Location: register.php?id=" . $user_id);
     }
-    // Si la vérification des données est ok :
-    include('db.php');
-    $db = connexionBase();
+
 
     // Insertion des données dans la base de données
     try {
@@ -35,4 +37,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: discs.php");
     exit();
 }
-?>
