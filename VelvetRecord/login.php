@@ -41,7 +41,7 @@ $db = connexionBase();
         <br>
         <br>
         <button type="submit" class="btn btn-outline-primary">Se connecter</button>
-        <a href="discs.php" class="btn btn-outline-primary">Retour</a>
+        <a href="index.php" class="btn btn-outline-primary">Retour</a>
     </form>
 </div>
 

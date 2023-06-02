@@ -20,7 +20,7 @@
 
     // Si OK: redirection vers la page artists.php
     TrtRedirection:
-    header("Location: discs.php");
+    header("Location: index.php");
     exit;
 
 ?>

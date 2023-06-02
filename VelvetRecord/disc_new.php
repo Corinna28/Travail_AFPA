@@ -94,7 +94,7 @@ $requete->closeCursor();
             <br>
             <!-- Bouton ajouter retour -->
             <button type="submit" class="btn btn-outline-primary">Ajouter</button>
-            <a href="discs.php" class="btn btn-outline-primary">Retour</a>
+            <a href="index.php" class="btn btn-outline-primary">Retour</a>
           </div>
         </div>
       </fieldset>

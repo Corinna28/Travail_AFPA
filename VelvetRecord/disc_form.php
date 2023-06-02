@@ -98,7 +98,7 @@ $requete2->closeCursor();
               <!-- Bouton modifier retour -->
               <button type="submit" class="btn btn-outline-primary">Modifier</button>
 
-              <a href="javascript:history.back()" class="btn btn-outline-primary">Retour</a>
+              <a href="index.php" class="btn btn-outline-primary">Retour</a>
             </div>
           </div>
           <!-- image -->

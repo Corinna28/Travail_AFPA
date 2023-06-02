@@ -77,7 +77,7 @@ $requete->closeCursor();
                         <a href="disc_form.php?disc_id=<?= $details->disc_id ?>" class="btn btn-outline-primary">Modifier</a>
                         <a href="script_disc_delete.php?id=<?= $details->disc_id ?>" class="btn btn-outline-primary" onClick="return confirm('supprimer le disque ?')">Supprimer</a>
 
-                        <a href="discs.php" class="btn btn-outline-primary">Retour</a>
+                        <a href="index.php" class="btn btn-outline-primary">Retour</a>
                     </div>
 
                     <!-- image -->

@@ -34,6 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Fin du script (script_register.php)");
     }
     // Redirection vers la page des disques
-    header("Location: discs.php");
+    header("Location: index.php");
     exit();
 }

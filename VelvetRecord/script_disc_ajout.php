@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Redirection vers la page des disques
-    header("Location: discs.php");
+    header("Location: index.php");
     exit();
 }
 
